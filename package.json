@@ -10,9 +10,10 @@
     "static",
     "now"
   ],
+  "homepage": "https://github.com/flawyte/static-auth",
   "license": "MIT",
   "main": "index.js",
-  "repository": "git@github.com:flawyte/static-auth.git",
+  "repository": "github:flawyte/static-auth",
   "private": true,
 
   "dependencies": {
