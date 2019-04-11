@@ -22,6 +22,7 @@ module.exports = restrictAccessTo(
   // Optional options
   {
     // Path to the static files' parent directory (if not a sibling of this script).
+    //
     // For example if your static files are located on disk at `~/my/website/public` but you don't
     // want `public` to appear in the URL so your HTML can have `<link href='/app.css'>` instead of
     // `<link href='/public/app.css'>` ‒ and this script is located at `~/my/website/index.js` ‒ then
@@ -33,7 +34,10 @@ module.exports = restrictAccessTo(
 
     // A callback to respond with a custom message (or a custom error HTML page) to the user when
     // his login credentials are not valid.
-    onAuthFailed: (res) => res.end('Restricted area. Please login (admin:admin).')
+    //
+    // Note: You don't need to set the `statusCode` to 401 and the `WWW-Authenticate` header as this
+    // is already done internally.
+    onAuthFailed: (res) => res.end('Restricted area. Please login.')
   }
 );
 ```
