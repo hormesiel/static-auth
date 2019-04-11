@@ -1,6 +1,6 @@
 {
   "name": "static-auth",
-  "version": "0.0.1",
+  "version": "0.0.2",
 
   "author": "Mickaël Allonneau <mickael.allonneau@gmail.com>",
   "description": "The most simple way to add Basic Authentication to a static website",
