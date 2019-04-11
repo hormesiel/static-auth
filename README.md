@@ -7,7 +7,7 @@ The most simple way to add Basic Authentication to a static website, using a sim
 It was originally created to protect websites hosted on [Now](https://zeit.co/now), but it can be used in vanilla HTTP projects too and should work with Express.
 
 ## Usage
-### with [Now](https://zeit.co/now)
+### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/))
 
 ```node
 const restrictAccessTo = require('static-auth');
