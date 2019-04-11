@@ -6,6 +6,14 @@ const serveStatic = require('serve-static');
  */
 
 const protect = (url, validator, { directory = process.cwd(), realm = 'default-realm', onAuthFailed = null } = {}) => {
+  // checks >>
+  if (typeof url !== 'string')
+    throw new Error('`url` is not a string');
+
+  if (typeof validator !== 'function')
+    throw new Error('`validator` is not a function');
+  // << checks
+
   const serve = serveStatic(directory);
 
   return (req, res) => {
