@@ -3,7 +3,7 @@
   "version": "0.0.1",
 
   "author": "Mickaël Allonneau <mickael.allonneau@gmail.com>",
-  "description": "Add Basic Authentication to your static website in just 1 line of code",
+  "description": "The most simple way to add Basic Authentication to a static website",
   "keywords": [
     "basic",
     "authentication",
