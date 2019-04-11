@@ -5,40 +5,33 @@ const serveStatic = require('serve-static');
  *
  */
 
-const checkCredentials = (current, authorized) => {
-  if (!current)
-    return false;
+const protect = (url, validator, { directory = process.cwd(), realm = 'default-realm', onAuthFailed = null } = {}) => {
+  const serve = serveStatic(directory);
 
-  const usernames = Object.keys(authorized);
-  const passwords = Object.values(authorized);
-
-  for (let i = 0; i < usernames.length; i++) {
-    const user = usernames[i];
-    const pass = passwords[i];
-    const matches = (user == current.name) && (pass == current.pass);
-
-    if (matches)
-      return true;
-  }
-
-  return false;
-};
-
-const protect = (dir, path, authorizedCredentials, { realm = 'default-realm' } = {}) => {
   return (req, res) => {
-    // Check authorization if URL requires it
-    if (req.url.startsWith(path)) {
+    // If request URL starts with the URL the user wants to restrict access to
+    if (req.url.startsWith(url)) {
       const credentials = getCredentials(req);
 
-      if (!checkCredentials(credentials, authorizedCredentials)) {
+      // If no credentials provided or they're not valid
+      if (!credentials || !validator(credentials.name, credentials.pass)) {
+        // Return 401 to ask for auth
         res.writeHead(401, { 'WWW-Authenticate': `Basic realm=${realm}` });
-        res.end('401 Unauthorized');
+
+        // Call user's auth failed handler if provided (e.g. to return a custom HTML error page)
+        if (typeof onAuthFailed === 'function')
+          onAuthFailed(res);
+        // Else, respond with a basic error message
+        else
+          res.end('401 Unauthorized');
+
+        // Don't serve the requested file
         return;
       }
     }
 
-    // Serve target file
-    serveStatic(dir)(req, res, () => res.end('404 Not Found'));
+    // Serve the requested file
+    serve(req, res, () => res.end('404 Not Found'));
   };
 };
 
