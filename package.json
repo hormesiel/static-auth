@@ -1,7 +1,6 @@
 {
   "name": "static-auth",
-  "version": "0.0.2",
-
+  "version": "1.0.0",
   "author": "Mickaël Allonneau <mickael.allonneau@gmail.com>",
   "description": "The most simple way to add Basic Authentication to a static website",
   "keywords": [
@@ -14,7 +13,6 @@
   "license": "MIT",
   "main": "index.js",
   "repository": "github:flawyte/static-auth",
-
   "dependencies": {
     "basic-auth": "^2.0.1",
     "serve-static": "^1.13.2"
