@@ -4,53 +4,92 @@
 
 The most simple way to add Basic Authentication to a static website, using a simple `Node.js` script.
 
-It was originally created to protect websites hosted on [Now](https://zeit.co/now), but it can be used in vanilla HTTP projects too and should work with Express.
+I originally created this to add an authentication layer to my projects hosted on [Now](https://zeit.co/now), but it can be used with Node's [`http`](https://nodejs.org/api/http.html) module too and should work with Express.
 
-## Usage
-### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/))
+## Getting started
+
+1. Install the package :
+
+```bash
+$ npm i static-auth -s
+
+# or
+$ yarn add static-auth
+```
+
+2. Use it :
 
 ```node
-const restrictAccessTo = require('static-auth');
+const auth = require('static-auth');
 
-module.exports = restrictAccessTo(
-  // Use '/' if you want to restrict access to the whole website
+// Example with Now
+module.exports = auth(
   '/admin',
-
-  // A callback to validate login credentials
-  (user, pass) => (user == 'admin' && pass == 'admin'),
-
-  // Optional options
-  {
-    // Path to the static files' parent directory (if not a sibling of this script).
-    //
-    // For example if your static files are located on disk at `~/my/website/public` but you don't
-    // want `public` to appear in the URL so your HTML can have `<link href='/app.css'>` instead of
-    // `<link href='/public/app.css'>` ‒ and this script is located at `~/my/website/index.js` ‒ then
-    // you should pass `__dirname + '/public'`
-    directory: __dirname + '/_static',
-
-    // See https://stackoverflow.com/questions/12701085/what-is-the-realm-in-basic-authentication
-    realm: 'my-website-admin',
-
-    // A callback to respond with a custom message (or a custom error HTML page) to the user when
-    // his login credentials are not valid.
-    //
-    // Note: You don't need to set the `statusCode` to 401 and the `WWW-Authenticate` header as this
-    // is already done internally.
-    onAuthFailed: (res) => res.end('Restricted area. Please login.')
-  }
+  (user, pass) => (user == 'admin' && pass == 'admin')
 );
 ```
 
-### with a Vanilla [HTTP](https://nodejs.org/api/http.html) server
+3. There's no step 3 − it's that easy!
 
+## Examples
+
+### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/))
+
+`index.js`
+```js
+const auth = require('static-auth');
+
+module.exports = auth(
+  '/admin',
+  (user, pass) => (user == 'admin' && pass == 'admin')
+);
+```
+
+`now.json`
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": ["**/*.html"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/.*", "dest": "index.js" }
+  ]
+}
+```
+
+The `includeFiles` property tells Now (in particular : [ncc](https://github.com/zeit/ncc)) to bundle your HTML files with the lambda, so it can access those files and serve them to the user. If you have other static assets, like CSS or JS files, you should tell Now to include them too (e.g. `"includeFiles": ["**/*.html", "**/*.css", "**/*.js"]`).
+
+Note that we also redirect all the HTTP requests to the Node script (thus avoiding Now's default behavior) so it can check for authorization before serving the requested files. Otherwise, the script would be useless.
+
+### with Node's [HTTP](https://nodejs.org/api/http.html) module
+
+`index.js`
 ```node
-//
-// <copy / paste the code from the Now usage example above>
-//
+// ... same as the Now example above ...
 
-// Then just add this to start the server
+// Just add this
 const http = require('http');
 const server = http.createServer(module.exports);
 server.listen(4444, () => console.log('Listening on port 4444...'));
 ```
+
+## API
+
+`auth(url, validator, [options])`
+
+Required :
+- **`url`** (*String*) : The base url to protect with Basic Authentication. Use `/` to restrict access to the whole website, or `/<path>` (e.g. `/admin`) to restrict access only to a section of your site.
+- **`validator`** (*Function*) : A function that accepts two parameters (`user` and `pass`) and returns `true` if the provided login credentials grant access to the restricted area.
+
+Optional :
+- **`[options]`** (*Object*) :
+  - **`[directory]`** (*String*, defaults to `process.cwd()`) : The base path to serve the static assets from. For example, if a request to `my-website.com/app.css` should return the content of the file located at `./www/app.css` (relative to the Node script), then you should set this to `__dirname + '/www'`, otherwise the script will look for `./app.css` − which doesn't exist − and return a 404.
+  - **`[realm]`** (*String*, defaults to `'default-realm'`) : See [What is the "realm" in basic authentication](https://stackoverflow.com/questions/12701085/what-is-the-realm-in-basic-authentication) (StackOverflow).
+  - **`[onAuthFailed]`** (*Function*) : A callback that accepts one parameter (`res`, an [`http.ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) object) and calls `res.end()` at some point (**otherwise your script will not terminate**). Useful if you want to return a custom message or HTML page when the provided credentials are not valid.
