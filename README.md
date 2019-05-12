@@ -1,4 +1,5 @@
-> ⚠️ This project is still experimental and API may break in future releases.
+[![version](https://img.shields.io/badge/version-1.0.0-cornflowerblue.svg?style=for-the-badge)](https://github.com/flawyte/static-auth/releases/tag/1.0.0)
+[![downloads](https://img.shields.io/npm/dm/static-auth.svg?color=salmon&style=for-the-badge)](https://www.npmjs.com/package/static-auth)
 
 # static-auth
 
@@ -9,7 +10,6 @@ I originally created this to add an authentication layer to my projects hosted o
 ## Getting started
 
 1. Install the package :
-
 ```bash
 $ npm i static-auth -s
 
@@ -18,8 +18,7 @@ $ yarn add static-auth
 ```
 
 2. Use it :
-
-```node
+```js
 const auth = require('static-auth');
 
 // Example with Now
@@ -27,7 +26,7 @@ module.exports = auth(
   '/admin',
   (user, pass) => (user == 'admin' && pass == 'admin')
 );
-```
+  ```
 
 3. There's no step 3 − it's that easy!
 
@@ -71,7 +70,7 @@ Note that we also redirect all the HTTP requests to the Node script (thus avoidi
 ### with Node's [HTTP](https://nodejs.org/api/http.html) module
 
 `index.js`
-```node
+```js
 // ... same as the Now example above ...
 
 // Just add this
