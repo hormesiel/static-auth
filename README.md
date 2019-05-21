@@ -32,7 +32,7 @@ module.exports = auth(
 
 ## Examples
 
-### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/))
+### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/), [source](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth))
 
 `index.js`
 ```js
