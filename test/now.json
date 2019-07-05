@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "static-auth-test",
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": ["**/index.html"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/.*", "dest": "index.js" }
+  ]
+}
