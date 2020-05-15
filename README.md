@@ -3,9 +3,9 @@
 
 # static-auth
 
-The most simple way to add Basic Authentication to a static website, using a simple `Node.js` script.
+The most simple way to add Basic Authentication to a static site, using a simple `Node.js` script.
 
-I originally created this to add an authentication layer to my projects hosted on [Vercel](https://zeit.co/now), but it can be used with Node's built-in [`http`](https://nodejs.org/api/http.html) module too and should work with Express.
+I originally created this to add an authentication layer to my projects hosted on [Vercel](https://vercel.com/home), but it can be used with Node's built-in [`http`](https://nodejs.org/api/http.html) module too and should work with Express.
 
 ## Getting started
 
@@ -34,7 +34,7 @@ module.exports = auth(
 
 ## Examples
 
-### with [Vercel](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/), [source](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth))
+### with [Vercel](https://vercel.com/home) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/), [source](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth))
 
 See [here](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth) for a complete example.
 
