@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/version-1.1.1-cornflowerblue.svg?style=for-the-badge)](https://github.com/flawyte/static-auth/releases/tag/1.1.1)
+[![version](https://img.shields.io/badge/version-2.0.0-lightseagreen.svg?style=for-the-badge)](https://github.com/flawyte/static-auth/releases/tag/2.0.0)
 [![downloads](https://img.shields.io/npm/dm/static-auth.svg?color=salmon&style=for-the-badge)](https://www.npmjs.com/package/static-auth)
 
 # static-auth
