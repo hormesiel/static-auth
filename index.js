@@ -24,9 +24,9 @@ const protect = (url, validator, { directory = process.cwd(), realm = 'default-r
         if (typeof onAuthFailed === 'function') // if the user wants to customize the response
           onAuthFailed(res);
         else
-          res.end('401 Unauthorized'); // otherwise, send a basic error message
+          res.write('401 Unauthorized'); // otherwise, send a basic error message
 
-        return; // don't serve the requested file
+        return res.end(); // don't serve the requested file
       }
     }
 
