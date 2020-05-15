@@ -4,10 +4,13 @@
   "author": "Mickaël Allonneau <mickael.allonneau@gmail.com>",
   "description": "The most simple way to add Basic Authentication to a static website",
   "keywords": [
-    "basic",
     "authentication",
+    "basic",
+    "now",
+    "serverless",
     "static",
-    "now"
+    "ssg",
+    "vercel"
   ],
   "homepage": "https://github.com/flawyte/static-auth",
   "license": "MIT",
