@@ -24,11 +24,13 @@ const auth = require('static-auth');
 // Example with Now
 module.exports = auth(
   '/admin',
-  (user, pass) => (user == 'admin' && pass == 'admin')
+  (user, pass) => (user == 'admin' && pass == 'admin') // (1)
 );
   ```
 
 3. There's no step 3 − it's that easy!
+
+> (1) Checking credentials via the `==` or `===` operators makes your code vulnerable to [Timing attacks](https://snyk.io/blog/node-js-timing-attack-ccc-ctf/). This can be solved by using the [safe-compare](https://www.npmjs.com/package/safe-compare) package instead.
 
 ## Examples
 
