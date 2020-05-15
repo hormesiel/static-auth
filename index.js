@@ -24,7 +24,7 @@ const protect = (url, validator, { directory = process.cwd(), realm = 'default-r
       // If no credentials provided or they're not valid
       if (!credentials || !validator(credentials.name, credentials.pass)) {
         // Return 401 to ask for auth
-        res.writeHead(401, { 'WWW-Authenticate': `Basic realm=${realm}` });
+        res.writeHead(401, { 'WWW-Authenticate': `Basic realm="${realm}"` });
 
         // Call user's auth failed handler if provided (e.g. to return a custom HTML error page)
         if (typeof onAuthFailed === 'function')
