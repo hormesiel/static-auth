@@ -5,7 +5,7 @@
 
 The most simple way to add Basic Authentication to a static website, using a simple `Node.js` script.
 
-I originally created this to add an authentication layer to my projects hosted on [Now](https://zeit.co/now), but it can be used with Node's [`http`](https://nodejs.org/api/http.html) module too and should work with Express.
+I originally created this to add an authentication layer to my projects hosted on [Vercel](https://zeit.co/now), but it can be used with Node's built-in [`http`](https://nodejs.org/api/http.html) module too and should work with Express.
 
 ## Getting started
 
@@ -21,10 +21,10 @@ $ yarn add static-auth
 ```js
 const auth = require('static-auth');
 
-// Example with Now
+// Example with Vercel
 module.exports = auth(
   '/admin',
-  (user, pass) => (user == 'admin' && pass == 'admin') // (1)
+  (user, pass) => (user === 'admin' && pass === 'admin') // (1)
 );
   ```
 
@@ -34,50 +34,22 @@ module.exports = auth(
 
 ## Examples
 
-### with [Now](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/), [source](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth))
+### with [Vercel](https://zeit.co/now) ([demo](https://now-basic-auth-node-static-auth.flawyte.now.sh/), [source](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth))
 
-`index.js`
-```js
-const auth = require('static-auth');
-
-module.exports = auth(
-  '/admin',
-  (user, pass) => (user == 'admin' && pass == 'admin')
-);
-```
-
-`now.json`
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@now/node",
-      "config": {
-        "includeFiles": ["**/*.html"]
-      }
-    }
-  ],
-  "routes": [
-    { "src": "/.*", "dest": "index.js" }
-  ]
-}
-```
-
-The `includeFiles` property tells Now (in particular : [ncc](https://github.com/zeit/ncc)) to bundle your HTML files with the lambda, so it can access those files and serve them to the user. If you have other static assets, like CSS or JS files, you should tell Now to include them too (e.g. `"includeFiles": ["**/*.html", "**/*.css", "**/*.js"]`).
-
-Note that we also redirect all the HTTP requests to the Node script (thus avoiding Now's default behavior) so it can check for authorization before serving the requested files. Otherwise, the script would be useless.
+See [here](https://github.com/flawyte/now-basic-auth/tree/master/node-static-auth) for a complete example.
 
 ### with Node's [HTTP](https://nodejs.org/api/http.html) module
 
 `index.js`
 ```js
-// ... same as the Now example above ...
+const protect = require('static-auth');
 
-// Just add this
+// create a handler that will check for basic authentication before serving the files
+const serveHandler = protect( /* ... */ );
+
+// start the server
 const http = require('http');
-const server = http.createServer(module.exports);
+const server = http.createServer(serveHandler);
 server.listen(4444, () => console.log('Listening on port 4444...'));
 ```
 
