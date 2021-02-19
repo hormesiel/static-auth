@@ -10,7 +10,7 @@ interface Options {
   directory?: string;
   realm?: string;
   onAuthFailed?: (res) => void;
-  serveStaticConfig?: serveStatic.ServeStaticOptions;
+  serveStaticOptions?: serveStatic.ServeStaticOptions;
 }
 
 type ValidatorFunction = (username: string, password: string) => boolean;
@@ -21,7 +21,7 @@ const optionsDefaultValues: Options = {
   directory: process.cwd(),
   realm: 'default-realm',
   onAuthFailed: res => res.write('401 Unauthorized'), // by default send a basic error message
-  serveStaticConfig: {}
+  serveStaticOptions: {}
 };
 
 // Exports
@@ -43,7 +43,7 @@ export default (url: string, validator: ValidatorFunction, optionsUserValues: Op
 
   // Everything OK
 
-  const serve = serveStatic(options.directory, options.serveStaticConfig);
+  const serve = serveStatic(options.directory, options.serveStaticOptions);
 
   return (req: http.IncomingMessage, res: http.ServerResponse) => {
     if (req.url.startsWith(url)) { // if request URL requires authentication
