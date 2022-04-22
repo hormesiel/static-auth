@@ -19,7 +19,8 @@
   "module": "dist/static-auth.esm.js",
   "source": "index.ts",
   "scripts": {
-    "build": "microbundle"
+    "build": "microbundle",
+    "publish": "yarn build && npm publish"
   },
   "dependencies": {
     "basic-auth": "^2.0.1",
