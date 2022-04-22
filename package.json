@@ -1,6 +1,6 @@
 {
   "name": "static-auth",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": "Mickaël Allonneau <mickael.allonneau.pro@gmail.com>",
   "description": "The most simple way to add Basic Authentication to a static website hosted on Vercel.",
   "keywords": [
