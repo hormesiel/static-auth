@@ -19,8 +19,8 @@ type ValidatorFunction = (username: string, password: string) => boolean;
 
 const optionsDefaultValues: Options = {
   directory: process.cwd(),
-  realm: 'default-realm',
   onAuthFailed: res => res.write('401 Unauthorized'), // by default send a basic error message
+  realm: 'default-realm',
   serveStaticOptions: {}
 };
 
