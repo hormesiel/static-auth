@@ -23,11 +23,11 @@
     "publish": "yarn build && npm publish"
   },
   "dependencies": {
-    "basic-auth": "^2.0.1",
-    "serve-static": "^1.15.0"
+    "basic-auth": "^3.0.0",
+    "serve-static": "^2.2.1"
   },
   "devDependencies": {
-    "@types/serve-static": "^1.13.10",
-    "microbundle": "^0.14.2"
+    "@types/serve-static": "^2.2.0",
+    "microbundle": "^0.15.1"
   }
 }
