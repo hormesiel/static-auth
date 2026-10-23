@@ -12,12 +12,17 @@
     "ssg",
     "vercel"
   ],
-  "homepage": "https://github.com/flawyte/static-auth",
   "license": "MIT",
   "repository": "github:flawyte/static-auth",
-  "main": "dist/static-auth.js",
-  "module": "dist/static-auth.esm.js",
+  "homepage": "https://github.com/flawyte/static-auth",
   "source": "index.ts",
+  "type": "module",
+  "main": "dist/static-auth.cjs",
+  "module": "dist/static-auth.module.mjs",
+  "exports": {
+    "require": "./dist/static-auth.cjs",
+    "default": "./dist/static-auth.modern.mjs"
+  },
   "scripts": {
     "build": "microbundle",
     "publish": "yarn build && npm publish"
@@ -28,6 +33,7 @@
   },
   "devDependencies": {
     "@types/serve-static": "^2.2.0",
-    "microbundle": "^0.15.1"
+    "microbundle": "^0.15.1",
+    "typescript": "^7.0.2"
   }
 }
