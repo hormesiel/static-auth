@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/version-2.1.2-lightseagreen.svg?style=for-the-badge)](https://github.com/flawyte/static-auth/releases/tag/2.1.2)
+[![version](https://img.shields.io/badge/version-2.1.2-lightseagreen.svg?style=for-the-badge)](https://github.com/hormesiel/static-auth/releases/tag/2.1.2)
 [![downloads](https://img.shields.io/npm/dm/static-auth.svg?color=salmon&style=for-the-badge)](https://www.npmjs.com/package/static-auth)
 
 # static-auth
@@ -39,7 +39,7 @@ module.exports = auth(
 ### with Vercel
 
 * [demo](https://vercel-basic-auth-node-static-auth.flawyte.vercel.app/)
-* [source](https://github.com/flawyte/vercel-basic-auth/tree/master/node-static-auth)
+* [source](https://github.com/hormesiel/vercel-basic-auth/tree/master/node-static-auth)
 
 ### with [Node's HTTP module](https://nodejs.org/api/http.html)
 
@@ -72,4 +72,4 @@ Optional :
     - **`[directory]`** (*String*, defaults to `process.cwd()`) : The base path to serve the static assets from. For example, if a request to `my-website.com/app.css` should return the content of the file located at `./www/app.css` (relative to the Node script), then you should set this to `__dirname + '/www'`, otherwise the script will look for `./app.css` − which doesn't exist − and return a 404.
     - **`[onAuthFailed]`** (*Function*) : A callback that accepts one parameter (`res`, an [`http.ServerResponse`](https://nodejs.org/api/http.html#http_class_http_serverresponse) object), useful if you want to return a custom error message or HTML page when the provided credentials are invalid.
     - **`[realm]`** (*String*, defaults to `'default-realm'`) : See [What is the "realm" in basic authentication](https://stackoverflow.com/questions/12701085/what-is-the-realm-in-basic-authentication) (StackOverflow).
-    - **`[serveStaticOptions]`** (*Object*, defaults to `{}`) : [Options](https://github.com/expressjs/serve-static#options) to pass to the underlying *serve-static* module that's used to serve the files (see a usage example [here](https://github.com/flawyte/static-auth/pull/4#issue-573776989)).
+    - **`[serveStaticOptions]`** (*Object*, defaults to `{}`) : [Options](https://github.com/expressjs/serve-static#options) to pass to the underlying *serve-static* module that's used to serve the files (see a usage example [here](https://github.com/hormesiel/static-auth/pull/4#issue-573776989)).

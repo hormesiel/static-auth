@@ -12,9 +12,9 @@
     "ssg",
     "vercel"
   ],
-  "homepage": "https://github.com/flawyte/static-auth",
+  "homepage": "https://github.com/hormesiel/static-auth",
   "license": "MIT",
-  "repository": "github:flawyte/static-auth",
+  "repository": "github:hormesiel/static-auth",
   "main": "dist/static-auth.js",
   "module": "dist/static-auth.esm.js",
   "source": "index.ts",
