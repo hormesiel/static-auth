@@ -23,7 +23,7 @@
     "publish": "yarn build && npm publish"
   },
   "dependencies": {
-    "basic-auth": "^2.0.1",
+    "basic-auth": "^3.0.0",
     "serve-static": "^1.15.0"
   },
   "devDependencies": {
