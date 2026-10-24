@@ -13,8 +13,8 @@
     "vercel"
   ],
   "license": "MIT",
-  "repository": "github:flawyte/static-auth",
-  "homepage": "https://github.com/flawyte/static-auth",
+  "repository": "github:hormesiel/static-auth",
+  "homepage": "https://github.com/hormesiel/static-auth",
   "source": "index.ts",
   "type": "module",
   "main": "dist/static-auth.cjs",
@@ -28,12 +28,12 @@
     "publish": "yarn build && npm publish"
   },
   "dependencies": {
-    "basic-auth": "^3.0.0",
-    "serve-static": "^2.2.1"
+    "basic-auth": "^2.0.1",
+    "serve-static": "^1.15.0"
   },
   "devDependencies": {
-    "@types/serve-static": "^2.2.0",
-    "microbundle": "^0.15.1",
+    "@types/serve-static": "^1.13.10",
+    "microbundle": "^0.14.2",
     "typescript": "^7.0.2"
   }
 }

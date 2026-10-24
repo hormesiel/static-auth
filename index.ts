@@ -1,6 +1,7 @@
 // Imports
 
 import type * as http from 'http';
+// import readCredentials from 'basic-auth';
 import { parse } from 'basic-auth';
 import serveStatic from 'serve-static';
 
@@ -47,6 +48,7 @@ export default (url: string, validator: ValidatorFunction, optionsUserValues: Op
 
   return (req: http.IncomingMessage, res: http.ServerResponse) => {
     if (req.url.startsWith(url)) { // if request URL requires authentication
+      // const credentials = readCredentials(req);
       const credentials = parse(req.headers.authorization);
 
       if (!credentials || !validator(credentials.name, credentials.pass)) { // if credentials are missing / invalid

@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "esnext"
+    "allowSyntheticDefaultImports": true
   }
 }
