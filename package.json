@@ -4,12 +4,13 @@
   "author": "Mickaël Allonneau <mickael.allonneau.pro@gmail.com>",
   "description": "The most simple way to add Basic Authentication to a static website hosted on Vercel.",
   "keywords": [
+    "auth",
     "authentication",
     "basic",
     "now",
     "serverless",
-    "static",
     "ssg",
+    "static",
     "vercel"
   ],
   "homepage": "https://github.com/hormesiel/static-auth",
