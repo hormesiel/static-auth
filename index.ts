@@ -10,7 +10,7 @@ const { parse } = require('basic-auth');
 interface Options {
   directory?: string;
   realm?: string;
-  onAuthFailed?: (res) => void;
+  onAuthFailed?: (res: http.ServerResponse) => void;
   serveStaticOptions?: serveStatic.ServeStaticOptions;
 }
 
@@ -44,15 +44,15 @@ export default (url: string, validator: ValidatorFunction, optionsUserValues: Op
 
   // Everything OK
 
-  const serve = serveStatic(options.directory, options.serveStaticOptions);
+  const serve = serveStatic(options.directory!, options.serveStaticOptions);
 
   return (req: http.IncomingMessage, res: http.ServerResponse) => {
-    if (req.url.startsWith(url)) { // if request URL requires authentication
+    if (req.url?.startsWith(url)) { // if request URL requires authentication
       const credentials = parse(req.headers.authorization);
 
       if (!credentials || !validator(credentials.name, credentials.pass)) { // if credentials are missing / invalid
         res.writeHead(401, { 'WWW-Authenticate': `Basic realm="${options.realm}"` });
-        options.onAuthFailed(res); // tell the user
+        options.onAuthFailed!(res); // tell the user
         return res.end(); // don't serve the requested file
       }
     }
