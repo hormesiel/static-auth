@@ -24,10 +24,10 @@
   },
   "dependencies": {
     "basic-auth": "^3.0.0",
-    "serve-static": "^1.15.0"
+    "serve-static": "^1.16.3"
   },
   "devDependencies": {
-    "@types/serve-static": "^1.13.10",
+    "@types/serve-static": "1.15.10",
     "microbundle": "^0.14.2"
   }
 }
