@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@types/serve-static": "1.15.10",
-    "microbundle": "^0.15.1",
-    "typescript": "^7.0.2"
+    "microbundle": "^0.15.1"
   }
 }
