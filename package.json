@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@types/serve-static": "1.15.10",
-    "microbundle": "^0.14.2"
+    "microbundle": "^0.15.1"
   }
 }
