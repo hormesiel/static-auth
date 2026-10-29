@@ -30,5 +30,12 @@
   "devDependencies": {
     "@types/serve-static": "^2.2.0",
     "microbundle": "^0.15.1"
-  }
+  },
+  "files": [
+    "dist",
+    "index.ts",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ]
 }
