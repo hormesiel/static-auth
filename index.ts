@@ -48,7 +48,7 @@ export default (url: string, validator: ValidatorFunction, optionsUserValues: Op
 
   return (req: http.IncomingMessage, res: http.ServerResponse) => {
     if (req.url?.startsWith(url)) { // if request URL requires authentication
-      const credentials = parse(req.headers.authorization);
+      const credentials = parse(req.headers.authorization ?? '');
 
       if (!credentials || !validator(credentials.name, credentials.pass)) { // if credentials are missing / invalid
         res.writeHead(401, { 'WWW-Authenticate': `Basic realm="${options.realm}"` });
