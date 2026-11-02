@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/badge/version-2.1.2-lightseagreen.svg?style=for-the-badge)](https://github.com/hormesiel/static-auth/releases/tag/2.1.2)
+[![version](https://img.shields.io/badge/version-2.2.3-lightseagreen.svg?style=for-the-badge)](https://github.com/hormesiel/static-auth/releases/tag/2.2.3)
 [![downloads](https://img.shields.io/npm/dm/static-auth.svg?color=salmon&style=for-the-badge)](https://www.npmjs.com/package/static-auth)
 
 # static-auth
