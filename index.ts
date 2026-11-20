@@ -3,7 +3,8 @@
 import type * as http from 'http';
 import serveStatic from 'serve-static';
 
-const { parse } = require('basic-auth');
+// const { parse } = require('basic-auth');
+// import { parse } from 'basic-auth';
 
 // Types
 
@@ -46,7 +47,9 @@ export default (url: string, validator: ValidatorFunction, optionsUserValues: Op
 
   const serve = serveStatic(options.directory!, options.serveStaticOptions);
 
-  return (req: http.IncomingMessage, res: http.ServerResponse) => {
+  return async (req: http.IncomingMessage, res: http.ServerResponse) => {
+    const parse = (await import('basic' + '-auth')).parse;
+
     if (req.url?.startsWith(url)) { // if request URL requires authentication
       const credentials = parse(req.headers.authorization ?? '');
 
